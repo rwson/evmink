@@ -75,7 +75,7 @@ def get_input(prompt, check, error_msg):
 
 async def main():
     _to = get_input('输入地址(打到那个号)：', lambda addr: len(addr) == 42, '地址长度不对, 请检查后重新输入')
-    _private_key = get_input('输入私钥(有gas的小号)：', lambda key: len(key) == 64 or (key.startswith('0x') and len(key) == 66), '私钥长度不对, 请检查后重新输入')
+    _private_key = get_input('输入私钥(有gas的号)：', lambda key: len(key) == 64 or (key.startswith('0x') and len(key) == 66), '私钥长度不对, 请检查后重新输入')
 
     _rpc = get_input('输入RPC：', lambda rpc: rpc.startswith('https://'), 'RPC格式不对, https://开头, 请检查后重新输入')
     _eip1559 = get_input('输入是否EIP1559(1为是，0为否)：', lambda eip1559: eip1559 in ['0', '1'], '输入错误, 必须为0或1, 请检查后重新输入')
@@ -93,8 +93,5 @@ async def main():
 
     await mint(_to, _rpc, _private_key, _gasPrice, _maxFeePerGas, _maxPriorityFeePerGas, _data)
 
-
 if __name__ == '__main__':
-    print('hdd.cm, 推特低至2毛，一手资源，售后无忧')
-    print('https://github.com/Fooyao/evmink; 请仔细阅读README文档')
     asyncio.run(main())
